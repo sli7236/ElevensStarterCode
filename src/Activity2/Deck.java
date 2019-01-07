@@ -16,7 +16,8 @@ public class Deck {
     /**
      * cards contains all the cards in the deck.
      */
-    private List<Card> cards;
+    List<Card> unDealt = new ArrayList<Card>();
+    List<Card> Dealt = new ArrayList<Card>();
 
     /**
      * size is the number of not-yet-dealt cards.
@@ -32,10 +33,15 @@ public class Deck {
      * and produces one of the corresponding card.
      * @param ranks is an array containing all of the card ranks.
      * @param suits is an array containing all of the card suits.
-     * @param values is an array containing all of the card point values.
+     * @param pointValue is an array containing all of the card point values.
      */
-    public Deck(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+    public Deck(String[] ranks, String[] suits, int[] pointValue){
+        for(int i = 0; i < suits.length; i++){
+            for(int j = 0 ; j < ranks.length; j++){
+                Card newCard = new Card(ranks[j],suits[i],pointValue[j]);
+                unDealt.add(newCard);
+            }
+        }
     }
 
 
@@ -45,6 +51,10 @@ public class Deck {
      */
     public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        if(unDealt.size()==0){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -53,6 +63,7 @@ public class Deck {
      */
     public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        return unDealt.size();
     }
 
     /**
@@ -61,6 +72,18 @@ public class Deck {
      */
     public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+        unDealt.addAll(Dealt);
+        Dealt.clear();
+        for(int i = unDealt.size()-1; i >= 0; i--){
+            int r = (int)(Math.random() * unDealt.size());
+            swap(unDealt,i,r);
+        }
+    }
+
+    public void swap(List<Card> list,int i, int j){
+        Card temp = list.get(i);
+        list.set(i,list.get(j));
+        list.set(j,temp);
     }
 
     /**
@@ -70,6 +93,14 @@ public class Deck {
      */
     public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+        Card topCard = unDealt.get(0);
+        if(topCard==null){
+            return null;
+        }
+        unDealt.remove(0);
+        Dealt.add(topCard);
+        System.out.println(topCard.toString());
+        return topCard;
     }
 
     /**
@@ -78,7 +109,7 @@ public class Deck {
      */
     @Override
     public String toString() {
-        String rtn = "size = " + size + "\nUndealt cards: \n";
+        /*String rtn = "size = " + size + "\nUndealt cards: \n";
 
         for (int k = size - 1; k >= 0; k--) {
             rtn = rtn + cards.get(k);
@@ -104,7 +135,12 @@ public class Deck {
         }
 
         rtn = rtn + "\n";
-        return rtn;
+        return rtn;*/
+        String result = "";
+        for(int i =0 ; i< unDealt.size();i++){
+            result+=unDealt.get(i).toString() + " ";
+        }
+        return result;
     }
 }
 
