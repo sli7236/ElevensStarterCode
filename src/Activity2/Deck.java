@@ -50,7 +50,6 @@ public class Deck {
      * @return true if this deck is empty, false otherwise.
      */
     public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
         if(unDealt.size()==0){
             return true;
         }
@@ -62,7 +61,6 @@ public class Deck {
      * @return the number of undealt cards in this deck.
      */
     public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
         return unDealt.size();
     }
 
@@ -71,7 +69,6 @@ public class Deck {
      * and reset the size to represent the entire deck.
      */
     public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
         unDealt.addAll(Dealt);
         Dealt.clear();
         for(int i = unDealt.size()-1; i >= 0; i--){

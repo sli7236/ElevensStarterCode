@@ -1,5 +1,8 @@
 package Activity8;
 
+import Activity2.Card;
+import Activity2.Deck;
+
 import java.util.List;
 import java.util.ArrayList;
 
