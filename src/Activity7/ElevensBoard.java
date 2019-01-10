@@ -11,6 +11,8 @@ import java.util.ArrayList;
  */
 public class ElevensBoard {
 
+    List<Activity4.Card> Dealt = new ArrayList<Activity4.Card>();
+
     /**
      * The size (number of cards) on the board.
      */
@@ -189,7 +191,14 @@ public class ElevensBoard {
      *         false otherwise.
      */
     public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (containsPairSum11(selectedCards) || containsJQK(selectedCards))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -201,7 +210,17 @@ public class ElevensBoard {
      *         false otherwise.
      */
     public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        for (int i = 0; i < Dealt.size(); i++)
+        {
+            for (int x = 0; x < Dealt.size(); x++)
+            {
+                if (i + x == 11)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
@@ -223,7 +242,14 @@ public class ElevensBoard {
      *              contain an 11-pair; false otherwise.
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        if (selectedCards.get(0) + selectedCards.get(1) == 11)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -235,6 +261,55 @@ public class ElevensBoard {
      *              include a jack, a queen, and a king; false otherwise.
      */
     private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        if (selectedCards.size() == 3)
+        {
+            if(selectedCards.get(0).equals("jack") && selectedCards.get(1).equals("queen") && selectedCards.get(2).equals("king"))
+            {
+                return true;
+            }
+            else
+            {
+                if(selectedCards.get(0).equals("jack") && selectedCards.get(1).equals("king") && selectedCards.get(2).equals("queen"))
+                {
+                    return true;
+                }
+                else
+                {
+                    if(selectedCards.get(0).equals("queen") && selectedCards.get(1).equals("jack") && selectedCards.get(2).equals("king"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        if(selectedCards.get(0).equals("queen") && selectedCards.get(1).equals("king") && selectedCards.get(2).equals("jack"))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if(selectedCards.get(0).equals("king") && selectedCards.get(1).equals("queen") && selectedCards.get(2).equals("jack"))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                if(selectedCards.get(0).equals("king") && selectedCards.get(1).equals("jack") && selectedCards.get(2).equals("queen"))
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 }

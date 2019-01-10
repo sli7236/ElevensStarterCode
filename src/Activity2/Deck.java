@@ -89,7 +89,6 @@ public class Deck {
      *         previously dealt.
      */
     public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
         Card topCard = unDealt.get(0);
         if(topCard==null){
             return null;

@@ -1,5 +1,7 @@
 package Activity8;
 
+import Activity4.Card;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -7,6 +9,9 @@ import java.util.ArrayList;
  * The ElevensBoard class represents the board in a game of Elevens.
  */
 public class ElevensBoard extends Board {
+
+    List<Card> unDealt = new ArrayList<Card>();
+    List<Card> Dealt = new ArrayList<Card>();
 
     /**
      * The size (number of cards) on the board.
@@ -55,12 +60,7 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean isLegal(List<Integer> selectedCards) {
-        int sum = 0;
-		for (int i = 0; i < selectedCards.size(); i++)
-        {
-            sum += selectedCards.get(i);
-        }
-        if (sum == 11)
+        if (containsPairSum11(selectedCards) || containsJQK(selectedCards))
         {
             return true;
         }
@@ -80,7 +80,17 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for (int i = 0; i < Dealt.size(); i++)
+        {
+            for (int x = 0; x < Dealt.size(); x++)
+            {
+                if (i + x == 11)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -92,7 +102,14 @@ public class ElevensBoard extends Board {
      *              contain an 11-pair; false otherwise.
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.get(0) + selectedCards.get(1) == 11)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -104,7 +121,56 @@ public class ElevensBoard extends Board {
      *              include a jack, a queen, and a king; false otherwise.
      */
     private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size() == 3)
+        {
+            if(selectedCards.get(0).equals("jack") && selectedCards.get(1).equals("queen") && selectedCards.get(2).equals("king"))
+            {
+                return true;
+            }
+            else
+            {
+                if(selectedCards.get(0).equals("jack") && selectedCards.get(1).equals("king") && selectedCards.get(2).equals("queen"))
+                {
+                    return true;
+                }
+                else
+                {
+                    if(selectedCards.get(0).equals("queen") && selectedCards.get(1).equals("jack") && selectedCards.get(2).equals("king"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        if(selectedCards.get(0).equals("queen") && selectedCards.get(1).equals("king") && selectedCards.get(2).equals("jack"))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            if(selectedCards.get(0).equals("king") && selectedCards.get(1).equals("queen") && selectedCards.get(2).equals("jack"))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                if(selectedCards.get(0).equals("king") && selectedCards.get(1).equals("jack") && selectedCards.get(2).equals("queen"))
+                                {
+                                    return true;
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 

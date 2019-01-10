@@ -26,14 +26,9 @@ public class Card {
     /**
      * Creates a new <code>Card</code> instance.
      *
-     * @param cardRank  a <code>String</code> value
-     *                  containing the rank of the card
-     * @param cardSuit  a <code>String</code> value
-     *                  containing the suit of the card
-     * @param pointValue an <code>int</code> value
-     *                  containing the point value of the card
      */
-    public Card(String cardRank, String cardSuit, int pointValue) {
+
+    public Card() {
         this.rank = rank;
         this.suit = suit;
         this.pointValue = pointValue;

@@ -84,7 +84,7 @@ public abstract class Board {
      * @param k the index of the card to be dealt.
      */
     public void deal(int k) {
-        cards[k] = deck.deal();
+        cards[k] = (Card) deck.deal();
     }
 
     /**

@@ -7,19 +7,22 @@ import Activity2.Deck;
  */
 public class CardTester {
     public static void main(String[] args) {
-        String[] ranks = {"A","B","C","D","E","F","G","H","I","J","K","L","M"};
-        String[] suits = {"Bear","Unicorn","Panda","Koala"};
+        String[] ranks = {"Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","jack","queen","king"};
+        String[] suits = {"Diamonds","Clubs","Hearts","Spades"};
         int[] pointValue = {1,2,3,4,5,6,7,8,9,10,11,12,13};
 
-        Deck deck = new Deck(ranks, suits, pointValue);
+        Deck deckTester = new Deck(ranks, suits, pointValue);
 
-        deck.shuffle();
 
-        int size = deck.size();
-        for(int i = 0; i < size;i++) {
-            deck.deal();
+        System.out.println("Deck Empty? " + deckTester.isEmpty());
+
+        deckTester.shuffle();
+
+        int deckSize = deckTester.size();
+        for(int i = 0; i < deckSize;i++) {
+            deckTester.deal();
         }
 
-        System.out.println("Deck Empty: " + deck.isEmpty());
+        System.out.println("Deck Empty? " + deckTester.isEmpty());
     }
 }
