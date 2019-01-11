@@ -54,7 +54,6 @@ public class ElevensBoard extends Board {
      * In Elevens, the legal groups are (1) a pair of non-face cards
      * whose values add to 11, and (2) a group of three cards consisting of
      * a jack, a queen, and a king in some order.
-     *
      * @param selectedCards the list of the indices of the selected cards.
      * @return true if the selected cards form a valid group for removal;
      * false otherwise.
@@ -123,34 +122,11 @@ public class ElevensBoard extends Board {
      * include a jack, a queen, and a king; false otherwise.
      */
     private boolean containsJQK(List<Integer> selectedCards) {
-        if (selectedCards.size() == 3) {
-            if (cardAt(selectedCards.get(0)).rank().equals("jack") && cardAt(selectedCards.get(1)).rank().equals("queen") && cardAt(selectedCards.get(2)).rank().equals("king")) {
-                return true;
-            } else {
-                if (cardAt(selectedCards.get(0)).rank().equals("jack") && cardAt(selectedCards.get(0)).rank().equals("king") && cardAt(selectedCards.get(2)).rank().equals("queen")) {
-                    return true;
-                } else {
-                    if (cardAt(selectedCards.get(0)).rank().equals("queen") && cardAt(selectedCards.get(0)).rank().equals("jack") && cardAt(selectedCards.get(2)).rank().equals("king")) {
-                        return true;
-                    } else {
-                        if (cardAt(selectedCards.get(0)).rank().equals("queen") && cardAt(selectedCards.get(0)).rank().equals("king") && cardAt(selectedCards.get(2)).rank().equals("jack")) {
-                            return true;
-                        } else {
-                            if (cardAt(selectedCards.get(0)).rank().equals("king") && cardAt(selectedCards.get(0)).rank().equals("queen") && cardAt(selectedCards.get(2)).rank().equals("jack")) {
-                                return true;
-                            } else {
-                                if (cardAt(selectedCards.get(0)).rank().equals("king") && cardAt(selectedCards.get(0)).rank().equals("jack") && cardAt(selectedCards.get(2)).rank().equals("queen")) {
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } else {
-            return false;
+        List<String> cardRanks = new ArrayList<>();
+        for (int i = 0; i < selectedCards.size(); i++) {
+            cardRanks.add(cardAt(selectedCards.get(i)).rank());
         }
+
+        return selectedCards.size() == 3 && cardRanks.contains("jack") && cardRanks.contains("queen") && cardRanks.contains("king");
     }
 }
