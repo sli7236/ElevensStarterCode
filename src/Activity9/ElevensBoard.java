@@ -99,11 +99,11 @@ public class ElevensBoard extends Board {
      * contain an 11-pair; false otherwise.
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
-        if (selectedCards.get(0).pointValue() + selectedCards.get(1) == 11) {
+        if (Dealt.get(selectedCards.get(0)).pointValue() +
+                Dealt.get(selectedCards.get(1)).pointValue() == 11) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -117,22 +117,22 @@ public class ElevensBoard extends Board {
      */
     private boolean containsJQK(List<Integer> selectedCards) {
         if (selectedCards.size() == 3) {
-            if (selectedCards.get(0).equals("jack") && selectedCards.get(1).equals("queen") && selectedCards.get(2).equals("king")) {
+            if (Dealt.get(selectedCards.get(0)).rank().equals("jack") && Dealt.get(selectedCards.get(1)).rank().equals("queen") && Dealt.get(selectedCards.get(2)).rank().equals("king")) {
                 return true;
             } else {
-                if (selectedCards.get(0).equals("jack") && selectedCards.get(1).equals("king") && selectedCards.get(2).equals("queen")) {
+                if (Dealt.get(selectedCards.get(0)).rank().equals("jack") && Dealt.get(selectedCards.get(0)).rank().equals("king") && Dealt.get(selectedCards.get(2)).rank().equals("queen")) {
                     return true;
                 } else {
-                    if (selectedCards.get(0).equals("queen") && selectedCards.get(1).equals("jack") && selectedCards.get(2).equals("king")) {
+                    if (Dealt.get(selectedCards.get(0)).rank().equals("queen") && Dealt.get(selectedCards.get(0)).rank().equals("jack") && Dealt.get(selectedCards.get(2)).rank().equals("king")) {
                         return true;
                     } else {
-                        if (selectedCards.get(0).equals("queen") && selectedCards.get(1).equals("king") && selectedCards.get(2).equals("jack")) {
+                        if (Dealt.get(selectedCards.get(0)).rank().equals("queen") && Dealt.get(selectedCards.get(0)).rank().equals("king") && Dealt.get(selectedCards.get(2)).rank().equals("jack")) {
                             return true;
                         } else {
-                            if (selectedCards.get(0).equals("king") && selectedCards.get(1).equals("queen") && selectedCards.get(2).equals("jack")) {
+                            if (Dealt.get(selectedCards.get(0)).rank().equals("king") && Dealt.get(selectedCards.get(0)).rank().equals("queen") && Dealt.get(selectedCards.get(2)).rank().equals("jack")) {
                                 return true;
                             } else {
-                                if (selectedCards.get(0).equals("king") && selectedCards.get(1).equals("jack") && selectedCards.get(2).equals("queen")) {
+                                if (Dealt.get(selectedCards.get(0)).rank().equals("king") && Dealt.get(selectedCards.get(0)).rank().equals("jack") && Dealt.get(selectedCards.get(2)).rank().equals("queen")) {
                                     return true;
                                 } else {
                                     return false;
